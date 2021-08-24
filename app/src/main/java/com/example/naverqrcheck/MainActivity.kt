@@ -4,31 +4,38 @@ import android.annotation.SuppressLint
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.fragment.app.Fragment
 import com.example.naverqrcheck.databinding.ActivityMainBinding
+import com.example.naverqrcheck.setting.SettingFragment
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
-    private lateinit var url: String
 
-    @SuppressLint("SetJavaScriptEnabled")
+    private lateinit var viewBinding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        viewBinding = ActivityMainBinding.inflate(layoutInflater)
+        val view = viewBinding.root
+        setContentView(view)
 
+        supportFragmentManager.beginTransaction().add(viewBinding.frameContainer.id, QrFragment()).commit()
 
-        binding.naverQrButton.setOnClickListener() {
-            url = "https://nid.naver.com/login/privacyQR"
+        viewBinding.bottomNavigation.setOnItemSelectedListener {
+            replaceFragment(
+                when (it.itemId) {
+                    R.id.action_QR -> QrFragment()
+                    //R.id.action_notification -> NotificationFragment()
+                    else -> SettingFragment()
+                }
+            )
+            true }
+    }
 
-
-            val builder = CustomTabsIntent.Builder()
-            val customTabsIntent = builder.build()
-            builder.setShowTitle(true)
-            customTabsIntent.launchUrl(this, Uri.parse(url))
-        }
-
+    private fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().replace(viewBinding.frameContainer.id, fragment).commit()
     }
 
 }

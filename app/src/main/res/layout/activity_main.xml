@@ -1,71 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:background="@color/white"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="1"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.AppBarLayout
+
+    <FrameLayout
+        android:id="@+id/frame_container"
+        android:layout_above="@id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/toolbargreen"
-        android:fitsSystemWindows="true">
+        android:layout_height="match_parent">
+    </FrameLayout>
 
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/appBarMargin"
-            android:layout_gravity="center"
-            android:contentInsetStart="0dp"
-            android:contentInsetLeft="0dp"
-            android:contentInsetEnd="0dp"
-            android:contentInsetRight="0dp"
-            app:contentInsetEnd="0dp"
-            app:contentInsetLeft="0dp"
-            app:contentInsetRight="0dp"
-            app:contentInsetStart="0dp"
-            app:layout_scrollFlags="scroll|enterAlways">
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:itemIconTint="@drawable/menu_selector_color"
+        app:itemTextColor="@drawable/menu_selector_color"
+        android:background="@android:color/white"
+        app:menu="@menu/navigation_menu" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="네이버 QR 체크인"
-                    android:textSize="@dimen/toolBarTextSize"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.appcompat.widget.Toolbar>
-    </com.google.android.material.appbar.AppBarLayout>
-    <View
-        android:layout_weight="0.473"
-        android:layout_gravity="center"
-        android:layout_width="0dp"
-        android:layout_height="0dp"/>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_weight="0.09"
-        android:id="@+id/naver_qr_button"
-        android:layout_width="250dp"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:background="@color/green"
-        android:text="네이버 QR 체크하기"
-        android:textSize="20sp" />
-    <View
-        android:layout_weight="0.473"
-        android:layout_gravity="center"
-        android:layout_width="0dp"
-        android:layout_height="0dp"/>
-
-</LinearLayout>
+</RelativeLayout>
