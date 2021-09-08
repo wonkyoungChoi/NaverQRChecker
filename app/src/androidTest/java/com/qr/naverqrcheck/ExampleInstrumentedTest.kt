@@ -1,4 +1,4 @@
-package com.example.naverqrcheck
+package com.qr.naverqrcheck
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

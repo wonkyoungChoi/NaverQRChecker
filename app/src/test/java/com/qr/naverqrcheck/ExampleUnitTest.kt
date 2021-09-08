@@ -1,4 +1,4 @@
-package com.example.naverqrcheck
+package com.qr.naverqrcheck
 
 import org.junit.Test
 
